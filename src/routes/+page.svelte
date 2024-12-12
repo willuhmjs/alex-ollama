@@ -7,7 +7,7 @@
     function initializeRecognition() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         recognition = new SpeechRecognition();
-
+        recognition.continuous = true;
         recognition.onstart = handleRecognitionStart;
         recognition.onresult = handleRecognitionResult;
         recognition.onend = handleRecognitionEnd;
@@ -40,7 +40,7 @@
         const transcript = event.results[0][0].transcript;
         console.log("DEBUG: " + transcript);
         const words = transcript.toLowerCase().split(' ');
-        const isForAlex = words.slice(0, 3).some(word => word.includes('alex'));
+        const isForAlex = words.slice(0, 3).some(word => word.includes('alex') && !words.includes("alexa"));
         if (isForAlex) {
             console.log("You said:", transcript);
             history += "<br>" + transcript;
