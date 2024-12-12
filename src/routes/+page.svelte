@@ -56,6 +56,10 @@
     function speakResponse(response: string) {
         const synth = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance(response);
+        const voices = synth.getVoices();
+        if (synth.getVoices().length > 0) {
+            utterance.voice = voices.find(voice => voice.name === "Google UK English Male");
+        }    
 
         // Stop recognition before speaking
         recognition.stop();

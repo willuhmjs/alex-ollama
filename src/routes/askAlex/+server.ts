@@ -23,7 +23,7 @@ export const POST: RequestHandler = async ({ request }) => {
         });
         }
         // Process the question here               
-        const response = (await askOllama("You are a voice assistant named Alex. Be conversation and respond with as few words as you can while also being completely pronounceable by text to speech.. Query: ", question)).response;
+        const response = (await askOllama("You are a voice assistant named Alex. Be conversation and respond with as few words as you can while also being completely pronounceable by text to speech. Use perfect grammar. Never ask questions. Query: ", question)).response;
 
         return new Response(JSON.stringify({ response }), {
             status: 200,
