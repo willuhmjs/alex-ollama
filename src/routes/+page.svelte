@@ -6,6 +6,10 @@
 
     function initializeRecognition() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            console.error("SpeechRecognition is not supported in this browser.");
+            return;
+        }
         recognition = new SpeechRecognition();
         recognition.continuous = true;
         recognition.onstart = handleRecognitionStart;
